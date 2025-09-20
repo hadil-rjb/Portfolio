@@ -45,7 +45,7 @@ const Formation = () => {
         </p>
       </motion.div>
 
-      <div className="container mx-auto max-w-7xl px-6 lg:px-0 relative">
+      <div className="container mx-auto max-w-7xl relative">
         {/* SVG Ligne Wavy avec flèches */}
         <svg
           className="hidden xl:block absolute top-10 left-0 w-full h-20"

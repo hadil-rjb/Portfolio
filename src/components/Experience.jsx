@@ -100,7 +100,7 @@ const Experience = () => {
 
   return (
     <section className="py-24 bg-black text-white relative">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto">
         {/* Header */}
         <motion.div
           ref={ref}

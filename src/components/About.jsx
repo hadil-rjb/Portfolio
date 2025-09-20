@@ -56,7 +56,7 @@ const About = () => {
 
   return (
     <div id="about" className="py-20 bg-black text-white mb-34">
-      <div className="container mx-auto px-8">
+      <div className="container mx-auto px-4">
       <section className="hidden relative py-24 bg-black text-white overflow-hidden flex items-center mt-34 mb-34">
         <div className="container mx-auto max-w-5xl px-6 lg:px-0 text-center mt-14 mb-14 relative">
           <AnimatePresence mode="wait">
@@ -77,7 +77,7 @@ const About = () => {
       </section>
 
       <section className="relative py-24 bg-black text-white overflow-hidden flex items-center mt-34 mb-34">
-        <div className="container mx-auto max-w-5xl px-6 lg:px-0 text-center mt-14 mb-14 relative">
+        <div className="container mx-auto max-w-5xl  text-center mt-14 mb-14 relative">
           <motion.div
             key={currentIndex}
             initial={{ y: 50, opacity: 0 }}

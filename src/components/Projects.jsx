@@ -71,7 +71,7 @@ const Projects = () => {
     },
     {
       id: 5,
-      title: "Petly App (Design)",
+      title: "Petly App",
       description:
         "Mobile app design for pet-sitting services with a user-friendly interface, scheduling features, and clear user flows. Focused on usability and visual storytelling.",
       image: "/Projects/Petly.png",

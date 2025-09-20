@@ -34,7 +34,10 @@ const Tutorials = () => {
   };
 
   return (
-    <section id="tutorials" className="py-40 bg-gradient-to-b from-black via-[#D2A2FF40] to-black">
+    <section
+      id="tutorials"
+      className="py-40 bg-gradient-to-b from-black via-[#D2A2FF40] to-black"
+    >
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div
@@ -44,12 +47,16 @@ const Tutorials = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-<h2 className="text-4xl lg:text-5xl font-bold mb-4 text-white">
-  My Video Tutorials
-</h2>
-<p className="text-gray-400 max-w-3xl mx-auto text-base lg:text-lg">
-  I love creating tutorials to share my passion and help others learn step by step. Here, I show you how to do cool things in a simple way. You can also visit my YouTube channel <span className="font-semibold text-[#D2A2FF]">Berbesha</span> for more videos.
-</p>
+          <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-white">
+            My Video Tutorials
+          </h2>
+          <p className="text-gray-400 max-w-3xl mx-auto text-base lg:text-lg">
+            I love creating tutorials to share my passion and help others learn
+            step by step. Here, I show you how to do cool things in a simple
+            way. You can also visit my YouTube channel{" "}
+            <span className="font-semibold text-[#D2A2FF]">Berbesha</span> for
+            more videos.
+          </p>
         </motion.div>
 
         {/* Video Grid */}
