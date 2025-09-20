@@ -55,7 +55,8 @@ const About = () => {
   const currentRole = roles[currentIndex];
 
   return (
-    <div id="about" className="mb-34">
+    <div id="about" className="py-20 bg-black text-white mb-34">
+      <div className="container mx-auto px-8">
       <section className="hidden relative py-24 bg-black text-white overflow-hidden flex items-center mt-34 mb-34">
         <div className="container mx-auto max-w-5xl px-6 lg:px-0 text-center mt-14 mb-14 relative">
           <AnimatePresence mode="wait">
@@ -104,6 +105,7 @@ const About = () => {
 
       <Formation />
       <Experience />
+      </div>
     </div>
   );
 };

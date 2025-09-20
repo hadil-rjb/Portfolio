@@ -71,8 +71,8 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-24 bg-black text-white">
-      <div className="container mx-auto px-6 max-w-7xl mb-24">
+    <section id="contact" className="py-20 bg-black text-white mb-34">
+      <div className="container mx-auto px-14">
         {/* Section Header */}
         <motion.div
           ref={ref}
