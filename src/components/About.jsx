@@ -60,7 +60,7 @@ const About = () => {
       <section className="hidden relative py-24 bg-black text-white overflow-hidden flex items-center mt-34 mb-34">
         <div className="container mx-auto max-w-5xl px-6 lg:px-0 text-center mt-14 mb-14 relative">
           <AnimatePresence mode="wait">
-            <motion.h1
+            <motion.div
               key={currentIndex}
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -71,14 +71,14 @@ const About = () => {
               I'm a{" "}
               <span className="font-bold text-white">{currentRole.main}</span>{" "}
               specialising in {currentRole.description}
-            </motion.h1>
+            </motion.div>
           </AnimatePresence>
         </div>
       </section>
 
       <section className="relative py-24 bg-black text-white overflow-hidden flex items-center mt-34 mb-34">
         <div className="container mx-auto max-w-5xl px-6 lg:px-0 text-center mt-14 mb-14 relative">
-          <motion.h1
+          <motion.div
             key={currentIndex}
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -87,7 +87,7 @@ const About = () => {
             className="text-[clamp(1.6rem,4vw,3rem)] md:text-[clamp(2.5rem,5vw,2rem)] text-white/70 font-light leading-snug"
           >
           <AnimatePresence mode="wait">
-            <motion.h1
+            <motion.div
               key={currentStage}
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -97,9 +97,9 @@ const About = () => {
             >
               <span className="font-bold text-white">{currentStage.main}</span>{" "}
               {currentStage.description}
-            </motion.h1>
+            </motion.div>
           </AnimatePresence>
-          </motion.h1>
+          </motion.div>
         </div>
       </section>
 

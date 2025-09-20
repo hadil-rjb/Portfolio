@@ -153,7 +153,7 @@ const Experience = () => {
 
                 {/* Card */}
                 <div
-                  className={`w-full max-w-xl lg:w-1/2 ${
+                  className={`w-full lg:w-1/2 ${
                     index % 2 === 0 ? "lg:pr-12" : "lg:pl-12"
                   }`}
                 >
@@ -235,14 +235,14 @@ const Experience = () => {
             ))}
           </div>
         </div>
-        {/* Voir Plus Button */}
+        {/* See More Button */}
         {visibleCount < experiences.length && (
           <div className="flex justify-center mt-16">
             <motion.button
               onClick={handleShowMore}
               className="px-6 py-3 rounded-xl bg-white/10 border border-[#D2A2FF] bg-white/5 text-[#D2A2FF] font-semibold shadow-lg hover:bg-[#D2A2FF] hover:text-black transition-all"
             >
-              Voir Plus
+              See More
             </motion.button>
           </div>
         )}

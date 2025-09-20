@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { FaYoutube, FaArrowRight } from "react-icons/fa";
+import { FaYoutube } from "react-icons/fa";
 
 const Tutorials = () => {
   const [ref, inView] = useInView({
@@ -8,7 +9,6 @@ const Tutorials = () => {
     threshold: 0.1,
   });
 
-  // Tes vidéos (tu peux ajouter titre et description si tu veux)
   const videos = [
     {
       id: 1,
@@ -24,6 +24,15 @@ const Tutorials = () => {
     },
   ];
 
+  // État de chargement pour chaque vidéo
+  const [loadingVideos, setLoadingVideos] = useState(
+    videos.reduce((acc, video) => ({ ...acc, [video.id]: true }), {})
+  );
+
+  const handleVideoLoad = (id) => {
+    setLoadingVideos((prev) => ({ ...prev, [id]: false }));
+  };
+
   return (
     <section id="tutorials" className="py-40 bg-gradient-to-b from-black via-[#D2A2FF40] to-black">
       <div className="container mx-auto px-4">
@@ -35,32 +44,38 @@ const Tutorials = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-white">
-            Video Tutorials
-          </h2>
-          <p className="text-gray-400 max-w-3xl mx-auto text-base lg:text-lg">
-            Watch my latest tutorials directly here or visit my YouTube channel <span className="font-semibold text-[#D2A2FF]">Berbesha</span>.
-          </p>
+<h2 className="text-4xl lg:text-5xl font-bold mb-4 text-white">
+  My Video Tutorials
+</h2>
+<p className="text-gray-400 max-w-3xl mx-auto text-base lg:text-lg">
+  I love creating tutorials to share my passion and help others learn step by step. Here, I show you how to do cool things in a simple way. You can also visit my YouTube channel <span className="font-semibold text-[#D2A2FF]">Berbesha</span> for more videos.
+</p>
         </motion.div>
 
         {/* Video Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div className="grid lg:grid-cols-3 gap-8 mb-16">
           {videos.map((video) => (
             <motion.div
               key={video.id}
               initial={{ opacity: 0, y: 50 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: video.id * 0.2 }}
-              className="rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all"
+              className="rounded-xl bg-white/5 overflow-hidden shadow-lg hover:shadow-2xl transition-all relative"
             >
               <div className="relative w-full h-66">
+                {loadingVideos[video.id] && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/50 z-10">
+                    <div className="loader border-t-4 border-b-4 border-[#D2A2FF] w-12 h-12 rounded-full animate-spin"></div>
+                  </div>
+                )}
                 <iframe
                   className="absolute inset-0 w-full h-full rounded-xl border border-white/20"
                   src={video.videoUrl}
-                  title={video.title}
+                  title={`Video ${video.id}`}
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
+                  onLoad={() => handleVideoLoad(video.id)}
                 />
               </div>
             </motion.div>
@@ -80,6 +95,20 @@ const Tutorials = () => {
           </a>
         </div>
       </div>
+
+      {/* Loader CSS */}
+      <style>
+        {`
+          .loader {
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+          }
+          @keyframes spin {
+            to { transform: rotate(360deg); }
+          }
+        `}
+      </style>
     </section>
   );
 };

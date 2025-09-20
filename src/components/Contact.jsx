@@ -83,7 +83,7 @@ const Contact = () => {
         >
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">Get in Touch</h2>
           <p className="text-gray-400 text-lg max-w-3xl mx-auto">
-            Have a project in mind? Let's chat! Fill out the form below or use
+            Let's chat! Fill out the form below or use
             the contact details.
           </p>
         </motion.div>

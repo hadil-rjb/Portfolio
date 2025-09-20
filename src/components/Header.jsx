@@ -112,7 +112,7 @@ const Header = () => {
         <motion.div
           initial={false}
           animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
-          className="lg:hidden overflow-hidden bg-white/10 border border-white/20 rounded-lg shadow-lg mt-2 mx-4 relative z-50"
+          className="lg:hidden overflow-hidden bg-white/10 border border-white/20 rounded-lg shadow-lg mx-4 relative z-50"
         >
           <div className="p-4 space-y-2">
             {navItems.map((item) => (

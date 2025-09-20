@@ -18,7 +18,7 @@ const Projects = () => {
       github: "https://github.com/hadil-rjb/Portfolio",
       demo: "#",
       type: "dev",
-      preview: "/Projects/Portfolio.pdf",
+      preview: "/Projects/Portfolio.png",
     },
     {
       id: 2,
@@ -189,67 +189,65 @@ const Projects = () => {
       </div>
 
       {/* Modal */}
-      {selectedProject && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-          <div className="bg-[#111111] border border-white/20 rounded-xl max-w-3xl w-full overflow-hidden relative">
-            <button
-              onClick={() => setSelectedProject(null)}
-              className="absolute top-4 right-4 p-2 bg-white/10 text-white rounded-full hover:bg-white/20"
+{/* Modal */}
+{selectedProject && (
+  <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+    <div className="bg-[#111111] border border-white/20 rounded-xl max-w-3xl w-full overflow-hidden relative">
+      <button
+        onClick={() => setSelectedProject(null)}
+        className="absolute top-4 right-4 p-2 bg-white/10 text-white rounded-full hover:bg-white/20"
+      >
+        <X size={20} />
+      </button>
+      <div className="p-6 mt-8">
+        {/* Video ou Image */}
+        {selectedProject.preview && (
+          <>
+            {selectedProject.preview.endsWith(".mp4") ? (
+              <video
+                src={selectedProject.preview}
+                controls
+                className="w-full rounded-lg mb-4"
+                onError={(e) => {
+                  // si la vidéo ne se charge pas, on remplace par l'image
+                  e.target.style.display = "none";
+                  const img = document.createElement("img");
+                  img.src = selectedProject.image;
+                  img.alt = selectedProject.title;
+                  img.className = "w-full rounded-lg mb-4";
+                  e.target.parentNode.insertBefore(img, e.target.nextSibling);
+                }}
+              />
+            ) : (
+              <img
+                src={selectedProject.preview}
+                alt={selectedProject.title}
+                className="w-full rounded-lg mb-4"
+              />
+            )}
+          </>
+        )}
+
+        <h3 className="text-2xl font-bold text-white mb-4">
+          {selectedProject.title}
+        </h3>
+        <p className="text-gray-400 mb-6">{selectedProject.description}</p>
+
+        <div className="flex flex-wrap gap-2">
+          {selectedProject.technologies.map((tech) => (
+            <span
+              key={tech}
+              className="px-3 py-1 bg-[#1a1a1a] border border-[#D2A2FF]/30 text-gray-200 text-sm rounded-full"
             >
-              <X size={20} />
-            </button>
-            <div className="p-6 mt-8">
-              {/* Video, Image ou PDF */}
-              {selectedProject.preview && (
-                <>
-                  {selectedProject.preview.endsWith(".mp4") ? (
-                    <video
-                      src={selectedProject.preview}
-                      controls
-                      className="w-full rounded-lg mb-4"
-                    />
-                  ) : selectedProject.preview.endsWith(".png") ? (
-                    <img
-                      src={selectedProject.preview}
-                      alt={selectedProject.title}
-                      className="w-full rounded-lg mb-4"
-                    />
-                  ) : selectedProject.preview.endsWith(".pdf") ? (
-                    <iframe
-                      src={selectedProject.preview}
-                      className="w-full h-[500px] mb-4 rounded-lg"
-                    ></iframe>
-                  ) : (
-                    <img
-                      src={selectedProject.preview}
-                      alt={selectedProject.title}
-                      className="w-full rounded-lg mb-4"
-                    />
-                  )}
-                </>
-              )}
-
-              <h3 className="text-2xl font-bold text-white mb-4">
-                {selectedProject.title}
-              </h3>
-              <p className="text-gray-400 mb-6">
-                {selectedProject.description}
-              </p>
-
-              <div className="flex flex-wrap gap-2">
-                {selectedProject.technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-3 py-1 bg-[#1a1a1a] border border-[#D2A2FF]/30 text-gray-200 text-sm rounded-full"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
+              {tech}
+            </span>
+          ))}
         </div>
-      )}
+      </div>
+    </div>
+  </div>
+)}
+
     </section>
   );
 };

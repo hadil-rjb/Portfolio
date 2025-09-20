@@ -45,7 +45,6 @@ const Certificates = () => {
     const handleKeyDown = (e) => {
       if (e.key === "ArrowRight") nextCert();
       if (e.key === "ArrowLeft") prevCert();
-      if (e.key === "Escape") closeCert();
     };
 
     window.addEventListener("keydown", handleKeyDown);

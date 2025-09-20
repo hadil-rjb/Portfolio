@@ -53,7 +53,7 @@ const Formation = () => {
           preserveAspectRatio="none"
         >
           <motion.path
-            d="M0 35 Q100 -05 200 25 T400 28 T600 20 T800 20 T1000 05"
+            d="M0 35 Q100 -08 200 25 T400 28 T600 20 T800 20 T1000 05"
             fill="transparent"
             stroke="#D2A2FF"
             strokeWidth="3"
@@ -67,7 +67,7 @@ const Formation = () => {
 
         <motion.div
           ref={ref}
-          className="flex flex-col xl:flex-row xl:space-x-12 relative py-16 items-center justify-center"
+          className="flex flex-col items-center space-y-12 xl:flex-row xl:space-x-12 xl:space-y-0 relative xl:py-16 justify-center"
         >
           {education.map((edu, index) => (
             <motion.div
@@ -75,13 +75,13 @@ const Formation = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: index * 0.3 }}
-              className="relative flex-shrink-0 w-100"
+              className="relative w-full"
             >
               {/* Dot */}
               <div className="hidden xl:block absolute -top-4 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-[#D2A2FF] rounded-full border-4 border-black shadow-lg z-10"></div>
 
               {/* Card */}
-              <div className="mt-20 bg-white/5 p-6 h-60 rounded-xl shadow-lg hover:bg-[#D2A2FF20] hover:border-[#D2A2FF60] transition-shadow border border-white/20">
+              <div className="xl:mt-20 bg-white/5 p-6 h-auto xl:min-h-[240px] rounded-xl shadow-lg hover:bg-[#D2A2FF20] hover:border-[#D2A2FF60] transition-shadow border border-white/20">
                 <div className="flex items-center space-x-2 mb-3">
                   <GraduationCap className="text-[#B387DF]" size={20} />
                   <span className="text-[#D2A2FF] font-semibold">

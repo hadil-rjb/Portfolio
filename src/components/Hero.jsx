@@ -47,7 +47,7 @@ const Hero = () => {
 
       {/* Content container */}
       <div className="container mx-auto px-4 flex flex-col items-center justify-center text-center relative z-10 mt-16 max-w-7xl">
-        <motion.h1
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
@@ -57,7 +57,7 @@ const Hero = () => {
           <span className="bg-gradient-to-br from-[#D2A2FF] via-[#D2A2FF] to-white bg-clip-text text-transparent font-bold">
             Hadil Rejeb
           </span>
-        </motion.h1>
+        </motion.div>
 
         <div className="text-xl lg:text-2xl mb-8 h-12 text-white/80 mt-6">
           <motion.span
@@ -73,16 +73,18 @@ const Hero = () => {
 
         {/* Social Media Buttons */}
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.5 }}
-          className="absolute right-4 top-4/4 -translate-y-1/2 flex flex-col gap-4 z-10"
+          className="absolute right-4 top-3/3 flex flex-col gap-4 z-10
+             md:top-2/3 sm:top-[60%]"
         >
           <a
             href="https://www.linkedin.com/in/hadil-rejeb"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center w-12 h-12 bg-white/10 text-white rounded-full hover:bg-[#0077B5] hover:text-white transition-colors"
+            className="flex items-center justify-center w-12 h-12 bg-white/10 text-white rounded-full 
+               hover:bg-[#0077B5] hover:text-white transition-colors"
             aria-label="LinkedIn"
           >
             <Linkedin size={20} />
@@ -91,7 +93,8 @@ const Hero = () => {
             href="https://github.com/hadil-rjb"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center w-12 h-12 bg-white/10 text-white rounded-full hover:bg-[#333] hover:text-white transition-colors"
+            className="flex items-center justify-center w-12 h-12 bg-white/10 text-white rounded-full 
+               hover:bg-[#333] hover:text-white transition-colors"
             aria-label="GitHub"
           >
             <Github size={20} />
@@ -100,7 +103,8 @@ const Hero = () => {
             href="https://youtube.com/@berbasha_dil?si=USYEUEvhThoRFIFa"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center w-12 h-12 bg-white/10 text-white rounded-full hover:bg-[#FF0000] hover:text-white transition-colors"
+            className="flex items-center justify-center w-12 h-12 bg-white/10 text-white rounded-full 
+               hover:bg-[#FF0000] hover:text-white transition-colors"
             aria-label="YouTube"
           >
             <Youtube size={20} />
@@ -109,7 +113,8 @@ const Hero = () => {
             href="https://www.behance.net/hadilrejeb"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center w-12 h-12 bg-white/10 text-white rounded-full hover:bg-[#1769FF] hover:text-white transition-colors"
+            className="flex items-center justify-center w-12 h-12 bg-white/10 text-white rounded-full 
+               hover:bg-[#1769FF] hover:text-white transition-colors"
             aria-label="Behance"
           >
             <FaBehance size={20} />
