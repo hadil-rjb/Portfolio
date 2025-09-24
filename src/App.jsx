@@ -7,7 +7,6 @@ import Tutorials from './components/Tutorials';
 import Certificates from './components/Certificates';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import Cursor from './components/animations/Cursor';
 
 function App() {
   return (
@@ -17,7 +16,6 @@ function App() {
       transition={{ duration: 0.5 }}
       className="min-h-screen"
     >
-      <Cursor />
       <Header />
       <main>
         <Hero />

@@ -72,7 +72,7 @@ const Contact = () => {
 
   return (
     <section id="contact" className="py-20 bg-black text-white mb-34">
-      <div className="container mx-auto px-14">
+      <div className="container mx-auto px-4">
         {/* Section Header */}
         <motion.div
           ref={ref}
@@ -81,10 +81,11 @@ const Contact = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-26"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold mb-4">Get in Touch</h2>
+          <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">
+            Get in Touch
+          </h2>
           <p className="text-gray-400 text-lg max-w-3xl mx-auto">
-            Let's chat! Fill out the form below or use
-            the contact details.
+            Let's chat! Fill out the form below or use the contact details.
           </p>
         </motion.div>
 

@@ -82,7 +82,8 @@ const Projects = () => {
         "Wireframes",
         "User Flows",
       ],
-      behance: "https://www.behance.net/gallery/216876915/Petly-UXUI-Design-for-a-Pet-Sitting-Mobile-App",
+      behance:
+        "https://www.behance.net/gallery/216876915/Petly-UXUI-Design-for-a-Pet-Sitting-Mobile-App",
       demo: "https://www.behance.net/gallery/216876915/Petly-UXUI-Design-for-a-Pet-Sitting-Mobile-App",
       type: "design",
       preview: "/Projects/Petly.png", // PDF ou image
@@ -111,7 +112,9 @@ const Projects = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold mb-4">My Projects</h2>
+          <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">
+            My Projects
+          </h2>
           <p className="text-gray-400 text-lg max-w-3xl mx-auto">
             Explore my work in web development and UI/UX design.
           </p>
@@ -189,65 +192,69 @@ const Projects = () => {
       </div>
 
       {/* Modal */}
-{/* Modal */}
-{selectedProject && (
-  <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-    <div className="bg-[#111111] border border-white/20 rounded-xl max-w-3xl w-full overflow-hidden relative">
-      <button
-        onClick={() => setSelectedProject(null)}
-        className="absolute top-4 right-4 p-2 bg-white/10 text-white rounded-full hover:bg-white/20"
-      >
-        <X size={20} />
-      </button>
-      <div className="p-6 mt-8">
-        {/* Video ou Image */}
-        {selectedProject.preview && (
-          <>
-            {selectedProject.preview.endsWith(".mp4") ? (
-              <video
-                src={selectedProject.preview}
-                controls
-                className="w-full rounded-lg mb-4"
-                onError={(e) => {
-                  // si la vidéo ne se charge pas, on remplace par l'image
-                  e.target.style.display = "none";
-                  const img = document.createElement("img");
-                  img.src = selectedProject.image;
-                  img.alt = selectedProject.title;
-                  img.className = "w-full rounded-lg mb-4";
-                  e.target.parentNode.insertBefore(img, e.target.nextSibling);
-                }}
-              />
-            ) : (
-              <img
-                src={selectedProject.preview}
-                alt={selectedProject.title}
-                className="w-full rounded-lg mb-4"
-              />
-            )}
-          </>
-        )}
-
-        <h3 className="text-2xl font-bold text-white mb-4">
-          {selectedProject.title}
-        </h3>
-        <p className="text-gray-400 mb-6">{selectedProject.description}</p>
-
-        <div className="flex flex-wrap gap-2">
-          {selectedProject.technologies.map((tech) => (
-            <span
-              key={tech}
-              className="px-3 py-1 bg-[#1a1a1a] border border-[#D2A2FF]/30 text-gray-200 text-sm rounded-full"
+      {/* Modal */}
+      {selectedProject && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+          <div className="bg-[#111111] border border-white/20 rounded-xl max-w-3xl w-full overflow-hidden relative">
+            <button
+              onClick={() => setSelectedProject(null)}
+              className="absolute top-4 right-4 p-2 bg-white/10 text-white rounded-full hover:bg-white/20"
             >
-              {tech}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
-  </div>
-)}
+              <X size={20} />
+            </button>
+            <div className="p-6 mt-8">
+              {/* Video ou Image */}
+              {selectedProject.preview && (
+                <>
+                  {selectedProject.preview.endsWith(".mp4") ? (
+                    <video
+                      src={selectedProject.preview}
+                      controls
+                      className="w-full rounded-lg mb-4"
+                      onError={(e) => {
+                        // si la vidéo ne se charge pas, on remplace par l'image
+                        e.target.style.display = "none";
+                        const img = document.createElement("img");
+                        img.src = selectedProject.image;
+                        img.alt = selectedProject.title;
+                        img.className = "w-full rounded-lg mb-4";
+                        e.target.parentNode.insertBefore(
+                          img,
+                          e.target.nextSibling
+                        );
+                      }}
+                    />
+                  ) : (
+                    <img
+                      src={selectedProject.preview}
+                      alt={selectedProject.title}
+                      className="w-full rounded-lg mb-4"
+                    />
+                  )}
+                </>
+              )}
 
+              <h3 className="text-2xl font-bold text-white mb-4">
+                {selectedProject.title}
+              </h3>
+              <p className="text-gray-400 mb-6">
+                {selectedProject.description}
+              </p>
+
+              <div className="flex flex-wrap gap-2">
+                {selectedProject.technologies.map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-3 py-1 bg-[#1a1a1a] border border-[#D2A2FF]/30 text-gray-200 text-sm rounded-full"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

@@ -47,7 +47,7 @@ const Tutorials = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-white">
+          <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">
             My Video Tutorials
           </h2>
           <p className="text-gray-400 max-w-3xl mx-auto text-base lg:text-lg">

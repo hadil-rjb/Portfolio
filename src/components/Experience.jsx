@@ -109,7 +109,7 @@ const Experience = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-white">
+          <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">
             Professional Experience
           </h2>
           <p className="text-gray-400 max-w-3xl mx-auto text-base lg:text-lg">
@@ -196,6 +196,11 @@ const Experience = () => {
                       ))
                     ) : (
                       <>
+                        <div className="flex items-center justify-end mb-2">
+                          <span className="text-gray-400 text-sm">
+                            {exp.period}
+                          </span>
+                        </div>
                         <p className="text-gray-400 mb-5 leading-relaxed">
                           {exp.description}
                         </p>

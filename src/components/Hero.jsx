@@ -51,7 +51,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="text-5xl sm:text-3xl md:text-8xl lg:text-9xl font-light text-white mb-8"
+          className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-light text-white mb-8"
         >
           <span className="font-[100]">Hi there, I'm </span>
           <span className="bg-gradient-to-br from-[#D2A2FF] via-[#D2A2FF] to-white bg-clip-text text-transparent font-bold">

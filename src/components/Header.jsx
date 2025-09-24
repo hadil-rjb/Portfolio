@@ -17,12 +17,18 @@ const Header = () => {
   ];
 
   const scrollToSection = (href) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsOpen(false);
-    }
+    // close menu first
+    setIsOpen(false);
+  
+    // then scroll a moment later
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 300); // 300ms to let the menu close animation finish
   };
+  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,7 +53,6 @@ const Header = () => {
       {/* Overlay full screen quand menu mobile ouvert */}
       {isOpen && (
         <div
-          onClick={() => setIsOpen(false)}
           className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-opacity"
         />
       )}
