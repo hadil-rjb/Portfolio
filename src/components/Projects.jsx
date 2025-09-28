@@ -3,104 +3,13 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { ExternalLink, Github, X } from "lucide-react";
 import { FaBehance } from "react-icons/fa";
+import { projects } from "../data/Projects";
 
 const Projects = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [selectedProject, setSelectedProject] = useState(null);
-  const projects = [
-    {
-      id: 1,
-      title: "HR Portfolio",
-      description:
-        "A web application showcasing my projects with interactive UI components and automated email notifications. Built to demonstrate modern web development skills.",
-      image: "/Projects/Portfolio.png",
-      technologies: ["React.js", "TailwindCSS", "Framer Motion", "EmailJS"],
-      github: "https://github.com/hadil-rjb/Portfolio",
-      demo: "#",
-      type: "dev",
-      preview: "/Projects/Portfolio.png",
-    },
-    {
-      id: 2,
-      title: "UX Feedback Platform",
-      description:
-        "A web platform designed to collect and analyze UI/UX feedback efficiently using AI tools. Optimized for user experience and data-driven insights.",
-      image: "/Projects/FeedbackUIUX.png",
-      technologies: [
-        "React.js",
-        "Node.js",
-        "TailwindCSS",
-        "MongoDB",
-        "REST APIs",
-      ],
-      github: "https://github.com/hadil-rjb/FeedbackUIUX",
-      demo: "#",
-      type: "dev",
-      preview: "/Projects/FeedbackUIUX.mp4",
-    },
-    {
-      id: 3,
-      title: "CodeLearn",
-      description:
-        "An educational platform helping beginners learn programming through interactive lessons, quizzes, and real-time code practice.",
-      image: "/Projects/PFA.png",
-      technologies: ["React.js", "Node.js", "TailwindCSS", "MongoDB"],
-      github: "https://github.com/hadil-rjb/CodeLearn",
-      demo: "#",
-      type: "dev",
-      preview: "/Projects/PFA.mp4",
-    },
-    {
-      id: 4,
-      title: "Auth System",
-      description:
-        "A secure authentication system using JWT, Node.js, and MongoDB. Includes signup, login, password reset, and role-based access management.",
-      image: "/Projects/Auth.png",
-      technologies: [
-        "React.js",
-        "Node.js",
-        "TailwindCSS",
-        "MongoDB",
-        "JWT",
-        "Bcrypt",
-      ],
-      github: "https://github.com/hadil-rjb/Auth",
-      demo: "#",
-      type: "dev",
-      preview: "/Projects/Auth.png",
-    },
-    {
-      id: 5,
-      title: "Petly App",
-      description:
-        "Mobile app design for pet-sitting services with a user-friendly interface, scheduling features, and clear user flows. Focused on usability and visual storytelling.",
-      image: "/Projects/Petly.png",
-      technologies: [
-        "Figma",
-        "Persona",
-        "Storytelling",
-        "Wireframes",
-        "User Flows",
-      ],
-      behance:
-        "https://www.behance.net/gallery/216876915/Petly-UXUI-Design-for-a-Pet-Sitting-Mobile-App",
-      demo: "https://www.behance.net/gallery/216876915/Petly-UXUI-Design-for-a-Pet-Sitting-Mobile-App",
-      type: "design",
-      preview: "/Projects/Petly.png", // PDF ou image
-    },
-    {
-      id: 6,
-      title: "VitaForma Web App",
-      description:
-        "A web application for Vitalait to manage employee training sessions effectively, featuring analytics dashboards and automated notifications.",
-      image: "/Projects/VitaForma.png",
-      technologies: ["Laravel", "Blade", "TailwindCSS", "Chart.js", "Mailtrap"],
-      github: "https://github.com/hadil-rjb/site_web_gestion_des_formations",
-      demo: "#",
-      type: "dev",
-      preview: "/Projects/VitaForma.mp4",
-    },
-  ];
+
+  const displayedProjects = projects.slice(0, 3);
 
   return (
     <section id="projects" className="py-20 bg-black text-white mb-34">
@@ -121,7 +30,7 @@ const Projects = () => {
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+          {displayedProjects.map((project, index) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 30 }}
@@ -171,7 +80,7 @@ const Projects = () => {
                 <h3 className="text-xl font-bold text-white mb-3">
                   {project.title}
                 </h3>
-                <p className="text-gray-400 mb-4 leading-relaxed line-clamp-2">
+                <p className="text-gray-400 mb-4 leading-relaxed line-clamp-1">
                   {project.description}
                 </p>
 
@@ -189,9 +98,17 @@ const Projects = () => {
             </motion.div>
           ))}
         </div>
+
+        <div className="flex justify-center mt-16">
+          <motion.button
+            className="px-6 py-3 rounded-xl border border-[#D2A2FF] bg-white/5 text-[#D2A2FF] font-semibold shadow-lg hover:bg-[#D2A2FF] hover:text-black transition-all"
+            onClick={() => (window.location.href = "/projects")}
+          >
+            See More
+          </motion.button>
+        </div>
       </div>
 
-      {/* Modal */}
       {/* Modal */}
       {selectedProject && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">

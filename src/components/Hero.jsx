@@ -29,7 +29,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex flex-col items-center justify-center"
     >
       {/* animation as background */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#B387DF30] to-black">
