@@ -1,11 +1,16 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X, Upload } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("#home");
+  const [isDownloading, setIsDownloading] = useState(false);
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const navItems = [
     { name: "Home", href: "#home" },
@@ -17,18 +22,32 @@ const Header = () => {
   ];
 
   const scrollToSection = (href) => {
-    // close menu first
     setIsOpen(false);
-  
-    // then scroll a moment later
-    setTimeout(() => {
+
+    if (location.pathname !== "/") {
+      navigate("/"); // retour à la home
+      setTimeout(() => {
+        const element = document.querySelector(href);
+        if (element) element.scrollIntoView({ behavior: "smooth" });
+      }, 500); 
+    } else {
       const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    }, 300); // 300ms to let the menu close animation finish
+      if (element) element.scrollIntoView({ behavior: "smooth" });
+    }
   };
-  
+
+  const handleDownloadCV = () => {
+    setIsDownloading(true);
+
+    const link = document.createElement("a");
+    link.href = "/CV/Hadil_Rejeb_CV.pdf";
+    link.download = "Hadil_Rejeb_CV.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    setTimeout(() => setIsDownloading(false), 1000);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,12 +69,7 @@ const Header = () => {
 
   return (
     <>
-      {/* Overlay full screen quand menu mobile ouvert */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-opacity"
-        />
-      )}
+      {isOpen && <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-opacity" />}
 
       <motion.header
         initial={{ y: -100 }}
@@ -66,11 +80,7 @@ const Header = () => {
       >
         <nav className="container mx-auto px-4 py-4 flex items-center justify-between relative z-50">
           {/* Logo */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-3xl font-bold text-[#D2A2FF] whitespace-nowrap"
-          >
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-3xl font-bold text-[#D2A2FF] whitespace-nowrap">
             HR
           </motion.div>
 
@@ -82,33 +92,28 @@ const Header = () => {
                 onClick={() => scrollToSection(item.href)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`px-4 py-2 rounded-xl border transition-colors
-                  ${
-                    activeSection === item.href
-                      ? "bg-white/10 text-[#D2A2FF] border-[#D2A2FF]"
-                      : "text-white/70 hover:text-white/80 hover:bg-white/10 border-transparent hover:border-white/60"
-                  }`}
+                className={`px-4 py-2 rounded-xl border transition-colors ${
+                  activeSection === item.href
+                    ? "bg-white/10 text-[#D2A2FF] border-[#D2A2FF]"
+                    : "text-white/70 hover:text-white/80 hover:bg-white/10 border-transparent hover:border-white/60"
+                }`}
               >
                 {item.name}
               </motion.button>
             ))}
           </div>
 
-          {/* Upload CV Button */}
-          <motion.a
-            href="/CV/Hadil_Rejeb_CV.pdf"
-            download="Hadil_Rejeb_CV.pdf"
+          {/* Desktop CV Button */}
+          <motion.button
+            onClick={handleDownloadCV}
             className="hidden lg:inline-flex items-center gap-2 bg-[#D2A2FF] border border-transparent text-black font-semibold px-4 py-2 rounded-xl shadow-md hover:bg-white hover:text-black transition"
           >
             <Upload size={16} />
-            Get My CV
-          </motion.a>
+            {isDownloading ? "Loading..." : "Get My CV"}
+          </motion.button>
 
           {/* Mobile Menu Toggle */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-lg text-white relative z-50"
-          >
+          <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden p-2 rounded-lg text-white relative z-50">
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </nav>
@@ -124,25 +129,24 @@ const Header = () => {
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className={`w-full px-3 py-2 text-left rounded-lg transition-colors
-                  ${
-                    activeSection === item.href
-                      ? "bg-[#D2A2FF] text-black"
-                      : "text-white/70 hover:text-purple-600 hover:bg-purple-50"
-                  }`}
+                className={`w-full px-3 py-2 text-left rounded-lg transition-colors ${
+                  activeSection === item.href
+                    ? "bg-[#D2A2FF] text-black"
+                    : "text-white/70 hover:text-purple-600 hover:bg-purple-50"
+                }`}
               >
                 {item.name}
               </button>
             ))}
 
-            <a
-              href="/cv/Hadil_Rejeb_CV.pdf"
-              download="Hadil_Rejeb_CV.pdf"
+            {/* Mobile CV Button */}
+            <button
+              onClick={handleDownloadCV}
               className="flex items-center gap-2 justify-center w-full bg-[#D2A2FF] text-black px-4 py-2 rounded-lg shadow-md hover:bg-purple-700 transition"
             >
               <Upload size={18} />
-              Get My CV
-            </a>
+              {isDownloading ? "Loading..." : "Get My CV"}
+            </button>
           </div>
         </motion.div>
       </motion.header>
