@@ -122,33 +122,42 @@ const Projects = () => {
             <div className="p-6 mt-8">
               {/* Video ou Image */}
               {selectedProject.preview && (
-                <>
-                  {selectedProject.preview.endsWith(".mp4") ? (
-                    <video
-                      src={selectedProject.preview}
-                      controls
-                      className="w-full rounded-lg mb-4"
-                      onError={(e) => {
-                        // si la vidéo ne se charge pas, on remplace par l'image
-                        e.target.style.display = "none";
-                        const img = document.createElement("img");
-                        img.src = selectedProject.image;
-                        img.alt = selectedProject.title;
-                        img.className = "w-full rounded-lg mb-4";
-                        e.target.parentNode.insertBefore(
-                          img,
-                          e.target.nextSibling
-                        );
-                      }}
-                    />
-                  ) : (
-                    <img
-                      src={selectedProject.preview}
-                      alt={selectedProject.title}
-                      className="w-full rounded-lg mb-4"
-                    />
-                  )}
-                </>
+                selectedProject.preview.includes("cloudinary.com") ? (
+                  <iframe
+                    src={selectedProject.preview}
+                    width="100%"
+                    height="400"
+                    className="rounded-lg mb-4"
+                    allow="autoplay; fullscreen; encrypted-media"
+                    allowFullScreen
+                    frameBorder="0"
+                    title={selectedProject.title}
+                  />
+                ) : selectedProject.preview.endsWith(".mp4") ? (
+                  <video
+                    src={selectedProject.preview}
+                    controls
+                    className="w-full rounded-lg mb-4"
+                    onError={(e) => {
+                      // si la vidéo ne se charge pas, on remplace par l'image
+                      e.target.style.display = "none";
+                      const img = document.createElement("img");
+                      img.src = selectedProject.image;
+                      img.alt = selectedProject.title;
+                      img.className = "w-full rounded-lg mb-4";
+                      e.target.parentNode.insertBefore(
+                        img,
+                        e.target.nextSibling
+                      );
+                    }}
+                  />
+                ) : (
+                  <img
+                    src={selectedProject.preview}
+                    alt={selectedProject.title}
+                    className="w-full rounded-lg mb-4"
+                  />
+                )
               )}
 
               <h3 className="text-2xl font-bold text-white mb-4">

@@ -17,7 +17,6 @@ const AllProjects = () => {
     } else {
       document.body.style.overflow = "auto";
     }
-
     return () => {
       document.body.style.overflow = "auto";
     };
@@ -92,7 +91,7 @@ const AllProjects = () => {
           </div>
         </div>
 
-        {/* Grid de projets ou message si vide */}
+        {/* Grid de projets */}
         {filteredProjects.length > 0 ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project, index) => (
@@ -189,7 +188,18 @@ const AllProjects = () => {
 
             <div className="p-6">
               {selectedProject.preview &&
-                (selectedProject.preview.endsWith(".mp4") ? (
+                (selectedProject.preview.includes("cloudinary.com") ? (
+                  <iframe
+                    src={selectedProject.preview}
+                    width="100%"
+                    height="400"
+                    className="rounded-lg mb-4"
+                    allow="autoplay; fullscreen; encrypted-media"
+                    allowFullScreen
+                    frameBorder="0"
+                    title={selectedProject.title}
+                  />
+                ) : selectedProject.preview.endsWith(".mp4") ? (
                   <video
                     src={selectedProject.preview}
                     controls
