@@ -29,11 +29,21 @@ const Header = () => {
       setTimeout(() => {
         const element = document.querySelector(href);
         if (element) element.scrollIntoView({ behavior: "smooth" });
-      }, 500); 
+      }, 500);
     } else {
       const element = document.querySelector(href);
       if (element) element.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  const scrollToSectionMobile = (href) => {
+    setIsOpen(false);
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 300);
   };
 
   const handleDownloadCV = () => {
@@ -69,7 +79,9 @@ const Header = () => {
 
   return (
     <>
-      {isOpen && <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-opacity" />}
+      {isOpen && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-opacity" />
+      )}
 
       <motion.header
         initial={{ y: -100 }}
@@ -80,7 +92,11 @@ const Header = () => {
       >
         <nav className="container mx-auto px-4 py-4 flex items-center justify-between relative z-50">
           {/* Logo */}
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-3xl font-bold text-[#D2A2FF] whitespace-nowrap">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-3xl font-bold text-[#D2A2FF] whitespace-nowrap"
+          >
             HR
           </motion.div>
 
@@ -113,7 +129,10 @@ const Header = () => {
           </motion.button>
 
           {/* Mobile Menu Toggle */}
-          <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden p-2 rounded-lg text-white relative z-50">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="lg:hidden p-2 rounded-lg text-white relative z-50"
+          >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </nav>
@@ -128,7 +147,7 @@ const Header = () => {
             {navItems.map((item) => (
               <button
                 key={item.name}
-                onClick={() => scrollToSection(item.href)}
+                onClick={() => scrollToSectionMobile(item.href)}
                 className={`w-full px-3 py-2 text-left rounded-lg transition-colors ${
                   activeSection === item.href
                     ? "bg-[#D2A2FF] text-black"
